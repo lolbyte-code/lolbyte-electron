@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Lolbyte Electron-ified!",
   "main": "./app/main.js",
+  "author": "Green Mario <crxlolbyte@gmail.com>",
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "npm install && electron .",
