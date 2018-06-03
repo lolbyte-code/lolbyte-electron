@@ -4,7 +4,7 @@ const {app, BrowserWindow} = require('electron')
 let mainWindow
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 715, height: 615, backgroundColor: '#04070D'})
+  mainWindow = new BrowserWindow({width: 715, height: 595, backgroundColor: '#04070D'})
 
   mainWindow.loadFile('app/lolbyte.html')
 
