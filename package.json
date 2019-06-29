@@ -1,6 +1,6 @@
 {
   "name": "LolByte",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lolbyte Electron-ified!",
   "main": "./app/main.js",
   "author": "Green Mario <crxlolbyte@gmail.com>",
