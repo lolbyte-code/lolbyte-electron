@@ -1,6 +1,6 @@
 {
   "name": "LolByte",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lolbyte Electron-ified!",
   "main": "./app/main.js",
   "author": "Green Mario <crxlolbyte@gmail.com>",
@@ -38,7 +38,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "electron": "latest",
-    "electron-builder": "latest"
+    "electron": "^8.2.3",
+    "electron-builder": "^22.5.1"
   }
 }

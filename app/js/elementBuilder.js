@@ -4,7 +4,7 @@ function buildSummonerElement(summonerData) {
     summonerElement.id = 'summonerOrb'
     $(summonerElement).click(function(){ summonerOrbClicked(summonerData.summonerName, summonerData.region) })
     var summonerIcon = document.createElement('img')
-    summonerIcon.src = 'img/resources/icons/' + summonerData.summonerIcon + '.png'
+    summonerIcon.src = CDRAGON_BASE_URL + 'profile-icon/' + summonerData.summonerIcon
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
     $(summonerName).text(summonerData.summonerName)
@@ -46,7 +46,7 @@ function buildCurrentGameElement(currentGameData) {
         currentGameSummoner.id = 'currentGameSummoner'
         $(currentGameSummoner).click({summonerName: currentSummoner.summonerName}, currentGameSummonerClicked)
         var champion = document.createElement('img')
-        champion.src = 'img/resources/champions/' + currentSummoner.championId + '.png'
+        champion.src = CDRAGON_BASE_URL + 'champion/' + currentSummoner.championId + '/square'
         var summonerName = document.createElement('p')
         summonerName.id = 'summonerName'
         $(summonerName).text(currentSummoner.summonerName)
@@ -76,7 +76,7 @@ function buildRecentGameElement(gameData, gameNumber) {
     $(recentGameElement).attr('class', 'matchId' + gameData.matchId)
     $(recentGameElement).click({'matchId': gameData.matchId, 'championId': gameData.championId, 'teamId': gameData.teamId}, recentGameClicked)
     var champion = document.createElement('img')
-    champion.src = 'img/resources/champions/' + gameData.championId + '.png'
+    champion.src = CDRAGON_BASE_URL + 'champion/' + gameData.championId + '/square'
     recentGameElement.appendChild(champion)
     champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
     var gameResult = document.createElement('p')
@@ -200,7 +200,7 @@ function buildchampionStatElement(championStatData) {
             var mostPlayedChampion = document.createElement('div')
             mostPlayedChampion.id = 'mostPlayedChampion'
             var championImage = document.createElement('img')
-            championImage.src = 'img/resources/champions/' + currentChampion.championId + '.png'
+            championImage.src = CDRAGON_BASE_URL + 'champion/' + currentChampion.championId + '/square'
             $(championImage).css('border', '3px solid ' + currentChampion.championBorder)
             var championName = document.createElement('p')
             championName.id = 'championName'
@@ -224,7 +224,7 @@ function buildchampionStatElement(championStatData) {
             var topChampion = document.createElement('div')
             topChampion.id = 'topChampion'
             var championImage = document.createElement('img')
-            championImage.src = 'img/resources/champions/' + currentChampion.championId + '.png'
+            championImage.src = CDRAGON_BASE_URL + 'champion/' + currentChampion.championId + '/square'
             $(championImage).css('border', '3px solid ' + currentChampion.masteryBorder)
             var championName = document.createElement('p')
             championName.id = 'championName'
@@ -280,7 +280,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     var matchDetailSelectionElement = document.createElement('div')
     matchDetailSelectionElement.id = 'matchDetailSelection'
     $(matchDetailSelectionElement).addClass('matchDetailSelection' + selectedSummoner.championId)
-    $(matchDetailSelectionElement).css('background-image', 'url("img/resources/splashes/' + selectedSummoner.championId + '.jpg")')
+    $(matchDetailSelectionElement).css('background-image', 'url("' + CDRAGON_BASE_URL + 'champion/' + selectedSummoner.championId + '/splash-art")')
     var itemList = document.createElement('ul')
     itemList.id = 'itemList'
     for (var i = 0; i < selectedSummoner.items.length; i++) {
@@ -297,14 +297,18 @@ function buildMatchDetailSelectionElement(matchDetailData) {
             });
         }
         var itemImage = document.createElement('img')
-        itemImage.src = 'img/resources/items/' + selectedSummoner.items[i]['id'] + '.png'
+        if (selectedSummoner.items[i]['id'] == 0) {
+            itemImage.src = 'img/resources/items/0.png'
+        } else {
+            itemImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.items[i]['id'] + '.png'
+        }
         item.appendChild(itemImage)
         itemList.appendChild(item)
     }
     var trinket = document.createElement('li')
     trinket.id = 'trinket'
     var trinketImage = document.createElement('img')
-    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket + '.png'
+    trinketImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.trinket + '.png'
     trinket.appendChild(trinketImage)
     itemList.appendChild(trinket)
 
@@ -468,7 +472,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
             matchDetailSummoner.id = 'matchDetailSummoner'
             var matchDetailSummonerChampion = document.createElement('img')
             matchDetailSummonerChampion.id = 'matchDetailSummonerChampion'
-            matchDetailSummonerChampion.src = 'img/resources/champions/' + currentSummoner.championId + '.png'
+            matchDetailSummonerChampion.src = CDRAGON_BASE_URL + 'champion/' + currentSummoner.championId + '/square'
             $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'matchId': matchDetailData.matchId}, matchDetailSummonerClicked)
             $(matchDetailSummonerChampion).css('border', '2px solid ' + (teamWin ? '#22A8CE' : '#B2281D'))
             setSelectedSummonerUI(matchDetailSummoner, currentSummoner, selectedSummoner)
@@ -491,7 +495,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
             var trinket = document.createElement('li')
             trinket.id = 'trinket'
             var trinketImage = document.createElement('img')
-            trinketImage.src = 'img/resources/items/' + currentSummoner.trinket + '.png'
+            trinketImage.src = DDRAGON_BASE_URL + 'img/item/' + currentSummoner.trinket + '.png'
             trinket.appendChild(trinketImage)
             itemList.appendChild(trinket)
             for (var j = 0; j < currentSummoner.items.length; j++) {
@@ -508,7 +512,11 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
                     });
                 }
                 var itemImage = document.createElement('img')
-                itemImage.src = 'img/resources/items/' + currentSummoner.items[j]['id'] + '.png'
+                if (currentSummoner.items[j]['id'] == 0) {
+                    itemImage.src = 'img/resources/items/0.png'
+                } else {
+                    itemImage.src = DDRAGON_BASE_URL + 'img/item/' + currentSummoner.items[j]['id'] + '.png'
+                }
                 item.appendChild(itemImage)
                 itemList.appendChild(item)
             }
