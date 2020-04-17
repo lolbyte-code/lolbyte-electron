@@ -18,3 +18,9 @@ Port of LolByte to Electron
 ```bash
 > npm run dist
 ```
+
+## Troubleshooting
+
+```bash
+> npm install electron-builder --save-dev
+```
