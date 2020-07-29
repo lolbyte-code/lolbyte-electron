@@ -1,4 +1,10 @@
 /* Custom adjustments for champion splash in match detail selection */
+/* Default styling for background (for new champs) */
+#matchDetailSelection {
+    background-position: 319px -1px;
+    background-size: 46%;
+}
+
 .matchDetailPage .matchDetailSelection875 {
     background-position: 319px -1px;
     background-size: 46%;
