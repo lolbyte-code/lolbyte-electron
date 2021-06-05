@@ -1,5 +1,5 @@
 /*** CONSTANTS ***/
-var API_BASE_URL = 'http://lolbyte.me:8080/api/v3/';
+var NEW_API_BASE_URL = 'https://lolbyte.services/api/v4';
 var MAX_SUMMONER_LIST_SIZE = 20
 var MAX_GAME_COUNT = 20
 var CDRAGON_BASE_URL = 'https://cdn.communitydragon.org/latest/'
@@ -30,11 +30,10 @@ function loadLolByte(inputObject) {
         buildLandingPage(inputObject.landingPage)
         showPage('landingPage')
     } else if (inputObject.searchSummonerPage) {
+        showPage('loader')
         SELECTED_MATCH = 0
         buildSummonerPage(inputObject)
-        buildStatsPage(inputObject)
-        showPage('summonerPage')
-        showPage('statsPage')
+        buildStatsPage()
     } else if (inputObject.matchDetailPage) {
         buildMatchDetailsPage(inputObject)
         showPage('summonerPage')
